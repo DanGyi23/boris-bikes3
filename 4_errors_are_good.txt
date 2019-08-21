@@ -1,0 +1,24 @@
+In IRB:
+2.6.3 :001 > docking_station = DockingStation.new
+=>
+Traceback (most recent call last):
+        4: from /Users/Contrabando2/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `<main>'
+        3: from /Users/Contrabando2/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `load'
+        2: from /Users/Contrabando2/.rvm/rubies/ruby-2.6.3/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):1
+NameError (uninitialized constant DockingStation)
+
+Tasks:
+Write down the type of error
+  Exception::StandardError::NameError (uninitialized constant)
+Write down the file path where the error happened
+  4: from /Users/Contrabando2/.rvm/rubies/ruby-2.6.3/bin/irb:23:in `<main>'
+Write down the line number of the error
+  1: from (irb):1
+Use the Ruby Documentation to find out what the error means
+  NameError is raised when a given name is invalid or undefined.
+  uninitialized constant means the constant (in this case DockingStation) is undefined.
+  The class DockingStation has not been defined.
+Suggest one way of solving the error.
+  Create a ruby file, in which you create a class named DockingStation
+  
