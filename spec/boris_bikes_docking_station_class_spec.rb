@@ -19,6 +19,11 @@ describe DockingStation do
      expect { subject.release_bike }.to raise_error(ArgumentError)
    end
 
+   it 'raises exception if bike is broken' do
+     expect { subject.release_bike }.to raise_error(ArgumentError) if bike.broken?
+   end
+
+
  end
 
  describe '#dock' do
@@ -40,5 +45,14 @@ describe DockingStation do
       DockingStation.new
       expect { @capacity.to eq(20) }
     end
+
+    it 'Reports that a bike is broken when it is docked' do
+      expect(subject.dock(bike).broken?).to eq true
+    end
+
+    it 'Allows a broken bike to be docked' do
+      expect(subject.dock(bike)).to not_raise_error(ArgumentError) if (subject.dock(bike).broken?)
+    end
+  
    end
  end
