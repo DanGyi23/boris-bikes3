@@ -1,22 +1,35 @@
 require 'boris_bikes'
 
-describe "DockingStation" do
+describe DockingStation do
 
-describe '#release_bike'
-  it {expect(DockingStation.new).to respond_to(:release_bike)}
+ let(:bike) { Bike.new }
 
-describe '#working?'
-  it {expect(DockingStation.new.release_bike).to respond_to(:working?)}
+ def self.it_responds_to(message)
+   it { is_expected.to respond_to message }
+ end
 
-describe '#working?'
-  it {expect(Bike.new.working?).to eq(true)}
+ describe '#release_bike' do
+   it_responds_to(:release_bike)
+   it 'releases working bikes' do
+     subject.dock(bike)
+     expect(subject.release_bike.working?).to eq true
+   end
 
-describe '#dock_bike'
-  it {expect(DockingStation.new).to respond_to(:dock_bike)}
+   it 'raises exception if dock is empty' do
+     expect { subject.release_bike }.to raise_error(ArgumentError)
+   end
 
-describe '#dock_bike'
-  it {expect(bike = DockingStation.new.release_bike).to eq(DockingStation.new.dock_bike(bike))}
+ end
 
-describe '#bike'
-  it { expect {DockingStation.new.release_bike}.to raise_error}
+ describe '#dock' do
+   it_responds_to(:dock)
+   it 'accepts a bike when docking' do
+     subject.dock(bike)
+     expect(subject.release_bike).to eq bike
+   end
+   it 'raises exception if dock is full' do
+     20.times { subject.dock(bike) }
+     expect { subject.dock(bike) }.to raise_error(ArgumentError)
+   end
+ end
 end
