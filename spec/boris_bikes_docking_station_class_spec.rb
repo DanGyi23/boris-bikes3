@@ -1,7 +1,7 @@
 require 'boris_bikes'
 
 describe DockingStation do
-
+  DEFAULT_CAPACITY = 20
  let(:bike) { Bike.new }
 
  def self.it_responds_to(message)
@@ -28,8 +28,17 @@ describe DockingStation do
      expect(subject.release_bike).to eq bike
    end
    it 'raises exception if dock is full' do
-     20.times { subject.dock(bike) }
+     DEFAULT_CAPACITY.times { subject.dock(bike) }
      expect { subject.dock(bike) }.to raise_error(ArgumentError)
    end
+     argument = 15
+    it 'stores initialize argument as @capacity' do
+      DockingStation.new(argument)
+      expect { @capacity.to eq(15) }
+    end
+    it 'stores DEFAULT_CAPACITY as @capacity' do
+      DockingStation.new
+      expect { @capacity.to eq(20) }
+    end
+   end
  end
-end
