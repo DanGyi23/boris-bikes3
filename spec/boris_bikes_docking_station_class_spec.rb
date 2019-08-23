@@ -22,6 +22,7 @@ describe DockingStation do
    end
 
    it 'raises exception if bike is broken' do
+     subject.dock(bike)
      expect { subject.release_bike }.to raise_error(ArgumentError) if bike.broken?
    end
 
